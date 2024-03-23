@@ -1,0 +1,50 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('../img/Background.png'); /* Replace 'your-background-image-url.jpg' with the URL of your background image */
+    background-size: cover;
+    background-position: 50%;
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .movieDetails {
+    padding: 20px;
+    border: 3px solid #ff5722;
+    border-radius: 10px;
+  }
+  
+  .movieDetails h2 {
+    margin-top: 0;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .movieDetails p {
+    margin-top: 0;
+    font-size: 20px;
+  }
+  
+  .backButton {
+    margin-top: 20px;
+    padding: 12px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    text-decoration: none;
+  }
+  
+  .backButton:hover {
+    background-color: #444;
+  }

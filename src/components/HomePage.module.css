@@ -1,0 +1,89 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('../img/Background.png'); /* Replace 'your-background-image-url.jpg' with the URL of your background image */
+    background-size: cover;
+    background-position: 50%;
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .searchContainer {
+    margin-bottom: 20px;
+  }
+  
+  .searchInput {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    border: 2px solid #333;
+    border-radius: 5px;
+  }
+  
+  .searchButton {
+    padding: 12px 20px;
+    background-color: #ff5722;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
+  .select {
+    margin-left: 10px;
+    padding: 10px;
+    font-size: 18px;
+    border: 2px solid #333;
+    border-radius: 5px;
+  }
+  
+  .movieList {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .movieItem {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 3px solid #ff5722;
+    border-radius: 10px;
+  }
+  
+  .movieItem h2 {
+    margin-top: 0;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .movieItem p {
+    margin-top: 0;
+    font-size: 18px;
+  }
+  
+  .detailsButton {
+    padding: 12px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    text-decoration: none;
+  }
+  
+  .detailsButton:hover {
+    background-color: #444;
+  }
+  
+  .pagination {
+    margin-top: 20px;
+  }

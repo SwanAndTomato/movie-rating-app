@@ -7,6 +7,15 @@
   pointer-events: none;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url('./img/Background.png');
+  background-size: cover;
+  background-position: center;
+  font-family: Arial, sans-serif;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
