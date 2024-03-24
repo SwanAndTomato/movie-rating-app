@@ -2,8 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
-import styles from './MovieDetailsPage.module.css';
-import Footer from './Footer'; 
+import styles from './MovieDetailsPage.module.css'; 
 
 function MovieDetailsPage() {
   const { id } = useParams();
@@ -29,19 +28,16 @@ function MovieDetailsPage() {
   }
 
   return (
-    <div>
     <div className={styles.container}>
       <div className={styles.movieDetails}>
         <h2>{movieDetails.title}</h2>
-        <p>Release Year: {movieDetails.release_date}</p>
+        <p>Release Date: {movieDetails.release_date}</p>
         <p>Plot Summary: {movieDetails.overview}</p>
         <p>Rating: {movieDetails.vote_average}</p>
         <p>Genres: {movieDetails.genres.map(genre => genre.name).join(', ')}</p>
         {/* You can add more details like cast, director, etc. if available */}
       </div>
       <Link to="/" className={styles.backButton}>Back to Home</Link>
-    </div>
-    <Footer></Footer>
     </div>
   );
 }

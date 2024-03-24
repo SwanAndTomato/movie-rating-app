@@ -1,9 +1,7 @@
-// src/components/HomePage.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import styles from './HomePage.module.css';
-import Footer from './Footer'; 
 
 function HomePage() {
   const [movies, setMovies] = useState([]);
@@ -11,6 +9,8 @@ function HomePage() {
   const [selectedGenre, setSelectedGenre] = useState('');
   const [genres, setGenres] = useState([]);
   const [loadingGenres, setLoadingGenres] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
     const fetchGenres = async () => {
@@ -29,29 +29,50 @@ function HomePage() {
     fetchGenres();
   }, []);
 
-  const handleSearch = async () => {
-    try {
-      let url = `https://api.themoviedb.org/3/movie/top_rated?api_key=6229c9565d3a99077270bdd9658407e2&language=en-US`;
-      if (searchTerm && selectedGenre) {
-        url = `https://api.themoviedb.org/3/search/movie?api_key=6229c9565d3a99077270bdd9658407e2&query=${searchTerm}&with_genres=${selectedGenre}`;
-      } else if (searchTerm) {
-        url = `https://api.themoviedb.org/3/search/movie?api_key=6229c9565d3a99077270bdd9658407e2&query=${searchTerm}`;
-      } else if (selectedGenre) {
-        url = `https://api.themoviedb.org/3/discover/movie?api_key=6229c9565d3a99077270bdd9658407e2&with_genres=${selectedGenre}`;
+  useEffect(() => {
+    const fetchMovies = async () => {
+      try {
+        let url = `https://api.themoviedb.org/3/movie/top_rated?api_key=6229c9565d3a99077270bdd9658407e2&language=en-US&page=${currentPage}`;
+        if (searchTerm && selectedGenre) {
+          url = `https://api.themoviedb.org/3/search/movie?api_key=6229c9565d3a99077270bdd9658407e2&query=${searchTerm}&with_genres=${selectedGenre}&page=${currentPage}`;
+        } else if (searchTerm) {
+          url = `https://api.themoviedb.org/3/search/movie?api_key=6229c9565d3a99077270bdd9658407e2&query=${searchTerm}&page=${currentPage}`;
+        } else if (selectedGenre) {
+          url = `https://api.themoviedb.org/3/discover/movie?api_key=6229c9565d3a99077270bdd9658407e2&with_genres=${selectedGenre}&page=${currentPage}`;
+        }
+        const response = await axios.get(url);
+        setMovies(response.data.results);
+        setTotalPages(response.data.total_pages);
+      } catch (error) {
+        console.error('Error fetching movies:', error);
       }
-      const response = await axios.get(url);
-      setMovies(response.data.results);
-    } catch (error) {
-      console.error('Error fetching movies:', error);
-    }
+    };
+
+    fetchMovies();
+  }, [currentPage, searchTerm, selectedGenre]);
+
+  const handleSearch = () => {
+    setCurrentPage(1); // Reset to the first page when searching
   };
 
   const handleGenreChange = (genreId) => {
     setSelectedGenre(genreId);
+    setCurrentPage(1); // Reset to the first page when changing genre
+  };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
   };
 
   return (
-    <div>
     <div className={styles.container}>
       <div className={styles.searchContainer}>
         <input
@@ -90,7 +111,7 @@ function HomePage() {
               />
               <div className={styles.details}>
                 <h2>{movie.title}</h2>
-                <p>Release Year: {movie.release_date}</p>
+                <p>Release Date: {movie.release_date}</p>
                 <p>Average Rating: {movie.vote_average}</p>
                 <Link to={`/movie/${movie.id}`} className={styles.detailsButton}>View Details</Link>
               </div>
@@ -98,8 +119,12 @@ function HomePage() {
           </li>
         ))}
       </ul>
-    </div>
-    <Footer ></Footer>
+
+      <div className={styles.pagination}>
+        <button onClick={handlePrevPage} disabled={currentPage === 1}>Previous Page</button>
+        <span>{currentPage} / {totalPages}</span>
+        <button onClick={handleNextPage} disabled={currentPage === totalPages}>Next Page</button>
+      </div>
     </div>
   );
 }

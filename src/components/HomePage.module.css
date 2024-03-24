@@ -1,8 +1,8 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url('../img/Background.png'); /* Replace 'your-background-image-url.jpg' with the URL of your background image */
-    background-size: cover;
+    background-image: url('../img/Background.png');
+    background-size:cover;
     background-position: 50%;
     font-family: Arial, sans-serif;
   }
@@ -86,4 +86,12 @@ body {
   
   .pagination {
     margin-top: 20px;
+    padding: 12px 20px;
+    background-color: #333;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    text-decoration: none;
   }
